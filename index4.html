@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="text" id="d">
+<input type="text" id="r">
+<strong id="cv" style="margin-left: 30px">Diện tích :</strong>
+<strong id="dt" style="margin-left: 30px">Chu vi :</strong>
+<button onclick="Show()" style="margin-left: 60px">Hiển thị</button>
+<canvas id="myCanvas" width="800" height="600"></canvas>
+<script>
+    let Rectangle=function (width,height) {
+        this.width=width;
+        this.height=height;
+        this.getWidth=function () {
+            return this.width;
+        };
+        this.getHeight=function () {
+            return this.height;
+        };
+        this.setWidth=function (width) {
+            return this.width;
+        };
+        this.setHeight=function (height) {
+            return this.height;
+        };
+        this.getArea=function () {
+            return this.width*this.height;
+        };
+        this.getCv=function () {
+            return (this.width + this.height)*2;
+        }
+    };
+    function getValue(id) {
+        let a=document.getElementById(id).value;
+        a=Number.parseInt(a);
+        return a;
+    }
+    function draw() {
+        let context=document.getElementById('myCanvas').getContext('2d');
+        let Rec=new Rectangle(getValue('d'),getValue('r'));
+        context.beginPath();
+        context.rect(50,50,Rec.width,Rec.height);
+        context.fillStyle='red';
+        context.fill();
+
+    }
+    function Show() {
+        let rectangle=new Rectangle(getValue('d'),getValue('r'));
+        document.getElementById('cv').innerHTML="Diện tích:"+rectangle.getArea();
+        document.getElementById('dt').innerHTML="Chu vi:"+rectangle.getCv();
+        draw();
+    }
+    
+
+</script>
+</body>
+</html>
